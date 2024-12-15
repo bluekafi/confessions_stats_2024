@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{code-scrape-py}
+scrape.py.
+\newblock
+  \url{https://drive.google.com/file/d/1x_XWGbxKHCPxmJo7_cfyQRLmpgFyUDie/view?usp=drive_link}.
+
+\bibitem{sheet-calc-gini-coefficient}
+Table calculation of gini coefficient.
+\newblock
+  \url{https://docs.google.com/spreadsheets/d/1m4j6RICIfq6DIdJ1OtQPb95STsEhHjRoEMEKSS9QAVE/edit?gid=1472074717#gid=1472074717}.
+
+\bibitem{sheet-count-comments}
+Table count of comments.
+\newblock
+  \url{https://docs.google.com/spreadsheets/d/1m4j6RICIfq6DIdJ1OtQPb95STsEhHjRoEMEKSS9QAVE/edit?gid=1821382722#gid=1821382722}.
+
+\bibitem{sheet-count-likes}
+Table count of likes of top authors.
+\newblock
+  \url{https://docs.google.com/spreadsheets/d/1m4j6RICIfq6DIdJ1OtQPb95STsEhHjRoEMEKSS9QAVE/edit?gid=1373352226#gid=1373352226}.
+
+\bibitem{wikipedia-gini}
+Коэффициент Джини — Википедия --- ru.wikipedia.org.
+\newblock
+  \url{https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D1%8D%D1%84%D1%84%D0%B8%D1%86%D0%B8%D0%B5%D0%BD%D1%82_%D0%94%D0%B6%D0%B8%D0%BD%D0%B8}.
+\newblock [Accessed 14-12-2024].
+
+\end{thebibliography}

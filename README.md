@@ -1,1 +1,1 @@
-# confessions_stats_2024
+# latex-template
