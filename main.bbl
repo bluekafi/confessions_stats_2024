@@ -20,10 +20,14 @@ Table count of likes of top authors.
 \newblock
   \url{https://docs.google.com/spreadsheets/d/1m4j6RICIfq6DIdJ1OtQPb95STsEhHjRoEMEKSS9QAVE/edit?gid=1373352226#gid=1373352226}.
 
+\bibitem{sheet-density}
+Table density.
+\newblock
+  \url{https://docs.google.com/spreadsheets/d/1m4j6RICIfq6DIdJ1OtQPb95STsEhHjRoEMEKSS9QAVE/edit?gid=585297305#gid=585297305}.
+
 \bibitem{wikipedia-gini}
 Коэффициент Джини — Википедия --- ru.wikipedia.org.
 \newblock
   \url{https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D1%8D%D1%84%D1%84%D0%B8%D1%86%D0%B8%D0%B5%D0%BD%D1%82_%D0%94%D0%B6%D0%B8%D0%BD%D0%B8}.
-\newblock [Accessed 14-12-2024].
 
 \end{thebibliography}

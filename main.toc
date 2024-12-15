@@ -5,9 +5,9 @@
 \contentsline {subsection}{\numberline {2.2}Sources of errors}{2}{subsection.2.2}%
 \contentsline {section}{\numberline {3}Results and Discussion}{2}{section.3}%
 \contentsline {subsection}{\numberline {3.1}The most Liked commentator (count\_likes)}{2}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}The most Depressed commentator (count\_comments)}{6}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}The most Sigma commentator (density)}{8}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}The most cringe commentator (reverse density)}{8}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}The best Female commentator}{8}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}The most Productive Commentator}{8}{subsection.3.6}%
-\contentsline {section}{\numberline {4}Conclusion}{9}{section.4}%
+\contentsline {subsection}{\numberline {3.2}The most Depressed commentator (count\_comments)}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}The most Sigma commentator (density)}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}The most cringe commentator (reverse density)}{11}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}The best Female commentator}{11}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}The most Productive Commentator}{11}{subsection.3.6}%
+\contentsline {section}{\numberline {4}Conclusion}{11}{section.4}%
