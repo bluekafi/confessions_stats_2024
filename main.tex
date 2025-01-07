@@ -1,5 +1,5 @@
 \documentclass[
-	11pt
+	12pt
 ] {article}
 
 \usepackage[
@@ -69,13 +69,17 @@
 \renewcommand{\arraystretch}{1.3}
 
 \begin{abstract}
-	Based on the number of likes each comment received, this report determines who is the most popular commentator of физтех-confessions. Comparison between the influence of the the top few commentators and the rest of the community is also made.
-\end{abstract}
+	Firstly, this report determines who is the most popular commentator of физтех-confessions, based on the number of likes each comment received.
+	Secondly, compares the influence of the top few commentators with the rest of the community.
+	Thirdly, analyzes the number of posts and number of likes over time.
+	If your name appears in this report and you think that you did not consent, then cry about it.
+	\end{abstract}
 
 \tableofcontents
 
 
-\section{Introduction and Motivation}
+\section{Introduction}
+\subsection{motivation}
 	2024 was a great year! Физтех-confessions was used:
 	\begin{enumerate}
 		\item To confess love and sins
@@ -84,74 +88,81 @@
 		\item To get daily dose of cringe because the brain demands it, just as our body demands \num{2.5}L of water everyday
 		\item To share some brilliant memes.
 	\end{enumerate}
-	We can obviously discuss the most liked posts, which will be a discussion on the created objects, but here I am more interested on the people, who keeps the community alive, so who is the most popular commentator of 2024?
+	
+	Definitons:
+	\begin{enumerate}
+		\item \textbf{Author:} The author of a comment.
+		\item \textbf{Writer:} Writer of a post / pasta.
+	\end{enumerate}
+	
+	The community would be glad to know who is the most popular author, and how the productivity of the writers have evolved over time.
 
 \section{Collection of Data}
-	\subsection{Basic statistics on the source}
-		\begin{enumerate}
-			\item Time period = 08.05.2023 - 11.12.2024.
-			\item Number of posts analyzed = 5000.
-			\item Number of comments analyzed = 17753.
-			\item Number of authors of comments = 1778
-		\end{enumerate}
+\subsection{Basic statistics on the source}
+	An amateur code \cite{code-scrape-py} was used to iterate through all posts backwards in time, starting from 11.12.2024 until 5000 posts were successfully read, and the number of likes on each comment and the author of the comment was recorded and put onto our main table. Instead of 2024, 1.5 year worth of data was used, because the физтех-confessions had change of admins and other breaks this year, and more data is always good for statistics. Here are the preliminary statistics:
 
-		An amateur code \cite{code-scrape-py} was used to iterate through all posts backwards in time, starting from 11.12.2024 until 5000 posts were successfully read, and the number of likes on each comment and the author of the comment was recorded and put onto our main table. Instead of 2024, 1.5 year worth of data was used, because the физтех-confessions had change of admins and other breaks this year, and more data is always good for statistics.
+	\begin{table}[H]
+		\centering
+		\caption{Basic statistics on number of likes, comments and authors.}
+		\label{table:basic-stats-number-likes-comments-author}
+		\begin{tabular}{| p{5cm}  c |}
+			\hline
+			Number of posts recorded & 5000 \\
+			\hline
+			Total number of comments & \num{17753} \\
+			Total number of authors & \num{1778} \\
+			\hline
+			Average number of comments per author & \num{9.98} \\
+			\hline
+		\end{tabular}
+	\end{table}
 
 
-	\subsection{Sources of errors}
-		A python code was used to browse vk and collect data instead of vk.api. The code could not read some of the comments if the page of the post had a lot of comments. Because such comments are collapsed and the code was not smart enough to click on buttons and expand to read all comments. Since the sample size is still very large, such errors do not distort the conclusions. Vk.api would give correct data but it was not used due to task being too technically difficult in nature given the aim is to only guess the most popular commentator.
+\subsection{Sources of errors}
+	The code could not read the less liked comments if the page of the post had a lot of comments. Because such comments are collapsed and the code was not smart enough to click on buttons and expand to read all comments. Since vk tends to hide the less popular comments by default, this created some inflation in the number of likes. Since the sample size is still very large, such errors do not distort the conclusions on who is the best commentator. Vk.api would give correct data but it was not used due to task being too technically difficult in nature when the benefit is only slightly improved accuracy. \textbf{Sincere precautions were made to not corrupt the raw data, or to change the calculations in anyway to prove an agenda. However if any mistake appears, it is unintentional.}
+
+	h-index: the total number  of comments - h, such that the number of likes in each of these comments is greater than or equal to h.
+
+	popularity = normalized\_count\_likes * normalized\_count\_comments * h-index
 
 
-
-		h-index: the total number  of comments - h, such that the number of likes in each of these comments is greater than or equal to h.
-
-		popularity = normalized\_count\_likes * normalized\_count\_comments * h-index
-
-
-\section{Results and Discussion}
+\section{Commentator}
 \subsection{The most Liked commentator (count\_likes)}
 	Definitions:
 	\begin{itemize}
 		\item count\_likes: the total number of likes an author received for the whole data.
 		\item serial: the rank when the table is sorted based on count\_likes.
-		\item author: the commentator, or the author of a comment.
 	\end{itemize}
 
 	\begin{table}[H]
 		\centering
 		\caption{Top-20 authors with most likes \cite{sheet-count-likes}.}
 		\label{table-count-likes}
-		\includegraphics[width=0.4\textwidth]{table-count-likes-488}
+		\includegraphics[width=0.5\textwidth]{table-count-likes-488}
 	\end{table}
+
+	Everyone is in the league of 1000's but \textbf{Василий Андрианов} is on another league collecting \num{4000} likes.
 
 	\begin{table}[H]
 		\centering
-		\caption{Basic statistics on number of likes, comments and authors.}
+		\caption{Likes received and comments written by all, top-10 and top-40 comparison}
 		\label{table:basic-stats-number-likes-comments-author}
-		\begin{tabular}{| p{5cm}  c |} % or ccS
+		\begin{tabular}{| p{5cm} | c | c | c |} % or ccS
 			\hline
-			Total number of likes & \num{75881} \\
-			Total number of comments & \num{17753} \\
-			Total number of authors & \num{1778} \\
+			 & top-10 & top-40 & all \\
 			\hline
-			Average number of likes per comment & \num{4.27} \\
-			Average number of comments per author & \num{9.98} \\
-			\hline
-			\hline
-			Number of likes received by the top-10 authors, (green rows in Table \ref{table-count-likes}) & \num{15042} \\
-			Number of comments written by the top-10 authors & \num{2291} \\
-			Average number of likes per comment for top-10 author & \num{6.57} \\
-			\hline
-			Percent of comments written by top-10 authors & \num{12.9}\% \\
-			Percent of likes by top-10 & \textbf{\num{19.8}}\% \\
-			\hline
-			\hline
-			Number of likes received by the top-40 authors & \num{35536} \\
-			Number of comments written by the top-40 authors & \num{7846} \\
-			Average number of likes per comment for top-40 author & \num{4.5} \\
-			\hline
-			Percent of comments written by top-40 authors & \num{44.2}\% \\
-			Percent of likes by top-40 & \textbf{\num{46.8}}\% \\
+			count\_likes &
+				\num{15042} \textbf{(\num{19.8}\%)} &
+				\num{35536} \textbf{(\num{46.8}\%)} &
+				\num{75881} \textbf{(\num{100}\%)} \\
+			count\_comments &
+				\num{2291} \textbf{(\num{12.9}\%)} &
+				\num{7846} \textbf{(\num{44.2}\%)} &
+				\num{17753} \textbf{(\num{100}\%)} \\
+			density (likes per comment) &
+				\num{6.57} &
+				\num{4.5} &
+				\num{4.27} \\
 			\hline
 		\end{tabular}
 	\end{table}
@@ -163,7 +174,7 @@
 		\label{fig-small-author-take-almost-all-likes}
 	\end{figure}
 
-	We can also say that half of the comment activity comes from just 40 authors. Now for simplicity, let us consider only the top-500 authors, and will have a look at the distribution curve on how the likes are distributed amount these 500 authors. It is reasonable to take the top-500 instead of all \num{1778} because, the 500th author when sorted on count\_likes had only 18 likes in total. We can assume that 501st author and on wards do not have much desire to get likes, therefore it will not be fair to add them to the distribution curve and conclude that the like distribution among the rich and poor is very large. By rich, of course we mean, those who took a large share of the total likes, and by poor who took a small share of the total likes. Also, the top-500 contribute to \num{93}\% of the total likes, so completely removing the others does not leave a big proportion of the data out.
+	We can also say that half of the comment activity comes from just 40 authors. Now for simplicity, let us consider only the top-500 authors, and will have a look at the distribution curve on how the likes are distributed amoung these 500 authors. It is reasonable to take the top-500 instead of all \num{1778} because, the 500th author when sorted on count\_likes had only 18 likes in total. We can assume that 501st author and on wards do not have much desire to get likes, therefore it will not be fair to add them to the distribution curve and conclude that the like distribution among the rich and poor is very large. By rich, of course we mean, those who took a large share of the total likes, and by poor who took a small share of the total likes. Also, the top-500 contribute to \num{93}\% of the total likes, so completely removing the others does not leave a big proportion of the data out.
 
 	\begin{figure}[H]
 		\centering
@@ -193,14 +204,14 @@
 		\end{tabular}
 	\end{table}
 
-	However note that we talk about South Africa based on our curve of физтех-confessions since we have almost the same gini-coefficient, but the exact distribution for the top \num{2}\% and the top \num{8}\% can be slightly different because gini-coefficient is due to the area between the red and the blue curve, this coefficient can be same due to the same area but actual blue curves can be slightly different.
+	However note that we talk about South Africa based on our curve of физтех-confessions since we have almost the same gini-coefficient, but the exact distribution for the top \num{2}\% and the top \num{8}\% can be slightly different because gini-coefficient is due to the area between the red and the blue curve, this coefficient can be same due to the same area but actual blue curves of confessions and SOuth Africa can be slightly different.
 
 \subsection{The most Depressed commentator (count\_comments)}
 	Definitions:
 	\begin{itemize}
-		\item rank: position based on a characteristic for a local table, while the serial is always the rank when the table was sorted according to count\_likes.
+		\item \textbf{rank: position based on a characteristic for a local table,} while the serial is always the rank when the table was sorted according to count\_likes.
 		\item count\_comments: the total number of comments an author wrote.
-		\item sr-difference = serial - rank is the difference between the the positions in the table of count\_likes and int this table. We would want to know if we change the measure based on which we sort the table how much does it differ from the table which was sorted based on the number of likes.
+		\item sr-difference = serial - rank, is the difference between the the positions in the table of count\_likes and in this table. We would want to know if we change the measure based on which we sort the table how much does it differ from the table which was sorted based on the number of likes.
 	\end{itemize}
 
 	\begin{table}[H]
@@ -210,7 +221,7 @@
 		\includegraphics[width=0.7\textwidth]{table-count-comments-818}
 	\end{table}
 
-	Certainly the most depressed student in физтех writes the most amount of comments. And now by the legendary sr-difference we see that Tigran Galstyan has moved up 14 places as compared to Table \ref{table-count-likes}. Лариса Ретроградная has also moved up a massive amount of 15 places it is because her comments are self contradictory, trolling or just toxic. Ярослав Аммосов has moved up many places it is because his comments are usually emojis or compliments appreciating the post or a comment of another author. Кафи Шаббир has moved down one place which indicates that his ratio of quality over quantity if not neural slightly good for the community. Николай Сменилфамилиюнавзрослуюсерьёзную has gone down by 8 places which means his quality over quantity is pretty high.
+	Certainly the most depressed student in физтех writes the most amount of comments. And now by the legendary sr-difference we see that Tigran Galstyan has moved up 14 places as compared to Table \ref{table-count-likes}. Лариса Ретроградная has also moved up a massive amount of 15 places it is because her comments are self contradictory, trolling or just toxic. Ярослав Аммосов has moved up many places it is because his comments are usually emojis or compliments appreciating the post or a comment of another author. Кафи Шаббир has moved down one place which indicates that his ratio of quality over quantity if not neural slightly good for the community. \textbf{Николай Сменилфамилиюнавзрослуюсерьёзную has gone down by 8 places which means his quality over quantity is pretty high}.
 
 	\begin{figure}[H]
 		\centering
@@ -252,7 +263,7 @@
 		\includegraphics[width=0.75\textwidth]{table-density}
 	\end{table}
 
-	This The number of likes and the number of comments certainly does not give us all the information. These are sigma's who keep silent, but when they speak something, it caries a lot of value. Кафи Шаббир completely flew away form the list ending up at 30th place. Адам Бушакур is certainly the sigma here, his density given the amount of comments he wrote can be matched by a few.
+	The number of likes and the number of comments certainly does not give us all the information. These are sigma's who keep silent, but when they speak something, it caries a lot of value. Кафи Шаббир completely flew away form the list ending up at 30th place. \textbf{Адам Бушакур is certainly the sigma here, his density given the amount of comments he wrote can be matched by a few}.
 
 	\begin{figure}[H]
 		\centering
@@ -278,17 +289,93 @@
 		\item \textbf{No one cares zone}: not a lot of audience cares or knows about the authors in this zone.
 	\end{enumerate}
 
-	\subsection{The most cringe commentator (reverse density)}
+\subsection{The most Based commentator (reverse density)}
 
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.75\textwidth]{table-reverse-density}
+		\caption{Reverse density for the most based authors}
+		\label{table-reverse-density}
+	\end{figure}
 
-	We can possibly divide the count like and count comment graph into 4 zones.
+	These authors are so \textbf{база} that people are probably afraid to like their comments, their comments are often misunderstood if they carry a deeper meaning. Sometimes some of them are just trolling in massive amounts. Eventough it is the bottom of the list, there are a surprisingly large number of women here and it turns out the women are in green (Евгения Алексеева, Алина Куринная, София Труфанова), which means that the top women do not write so much, but what they write is liked by a disproportionately high number of people. It is probably because the community of физтех-confessions and физтех is mostly male, and seeing female comments below the posts melts a man's heart.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{fig-density-vs-count-comments}
+		\caption{Density vs count\_comments, \cite{sheet-density-distribution}.}
+		\label{fig-density-vs-count-comments}
+	\end{figure}
+
+	In figure \ref{fig-density-vs-count-comments}, all females who have commented more than 22 times are marked. It seems that they occupy a good position, often being on top of the blue blobs in that region. \textbf{Here the position of Адам Бушакур is absolutely legendary there is no one close to him in that region}.
 
 \subsection{The best Female commentator}
-\subsection{The most Productive Commentator}
+	\begin{table}[H]
+		\centering
+		\caption{Top-12 female commentators based on count\_likes.}
+		\label{table-female}
+		\includegraphics[width=0.7\textwidth]{table-female}
+	\end{table}
+	
+\subsection{The most Productive commentator (h-index)}
+	\begin{table}[H]
+		\centering
+		\caption{Top-20 most productive commentators.}
+		\label{table-hindex}
+		\includegraphics[width=0.9\textwidth]{table-hindex}
+	\end{table}
+	
+	The density does not give us a full picture. Maybe an author writes a lot of compliments with decreases his density, or maybe he started out bad but now is doing good. Hence we judge them by the h-index \cite{wikipedia-hindex}.
 
-	H-index depends on the number of likes and the comment density
-\section{Conclusion}
-	This report was prepared without the consent to publish name or profile pictures of the commentators. If you have a problem with it, you can cry about it.
+\section{Posts}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\textwidth]{fig-old-count-post-time}
+		\caption{Statistics of number of posts over time, published in August 2023 in \#5818 \cite{vk-link-old-stats}}
+		\label{fig-old-count-post-time}
+	\end{figure}
+	In figure \ref{fig-old-count-post-time}, for the first time in our life could see that just like there are debt and credit cycles in the economy of a country, there are periods of less productivity by the writers of the posts and admins. Over here we see only one depression, which have indeed correctly defined to be the great depression. However do these patterns of productivity and depressions happen over and over again? To answer this question we need to zoom out further in this graph.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{fig-post-n-vs-time}
+		\caption{Number of post published over time, and number of posts published per day for various periods of time.}
+		\label{fig-post-n-vs-time}
+	\end{figure}
+	
+	In figure \ref{fig-post-n-vs-time}, we are looking at the whole history of confessions. The 100th post was published on the 1st of September 2022 and the 13600th post on the 3rd of January 2025. Which is 13500 posts published over 856 days, which is \num{15.7} posts per day. The average number of likes per post from June 2023 to December 2024 is \num{22.4}. 
+	
+	In the beginning we had the \textbf{trial-period} which perhaps lasted 15th of October 2022, during which confessions was still being popularized and hence we can assume there were not many writers of pastas at that time, but never the less, the number of posts per day is \num{20}, which is strangely even higher than the current average under the reign of \textbf{Окли Сириус}, \num{16} posts per day.
+	
+	Under the 1st Administration of Kristina (\textbf{kristina-1}), the number of posts per day was so high that no oter periods can come closer to this number. The significance about this period is that, only written text was allowed, polls and pictures were probably approved only on Sunday. This is the period when the writers of pastas dumped a lot of trash and most content was published with little or less filtering.
+	
+	Obviously Kristina overworked, just us credit based, speculation based economic growth causes the bubble to brust, which is the time when the debts which was used to create credit now need to be payed back. Overworked Kristina is going to be overwhelmed and will need to rest. The rest or depressed, gloomy sadness period was a long 4 months, lasting from the 15th of January 2023 to 15th of April 2023.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{fig-post-n-vs-time-joke}
+		\caption{Marking periods in USA's econimic history on number of posts with respect to time.}
+		\label{fig-post-n-vs-time-joke}
+	\end{figure}
+	
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{fig-likes-mega-likes-vs-post-n}
+		\caption{}
+		\label{fig-likes-mega-likes-vs-post-n}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{fig-likes-vs-post-moving-average}
+		\caption{Likes vs hash-number of post, and the average number of likes of aurrounding 100 posts.}
+		\label{fig-likes-vs-post-moving-average}
+	\end{figure}
+	
+	A sad fact is that, it is clear that the number of posts have slightly decreased, if we compare it with the reign of \textbf{Ева Астра}. The number of subscribers have definitely increased by a large margin. However when we look at the number of likes per post over time, the trendline very slightly slopes downwards. \textbf{Given the same number of posts per day over time, and given steady increase of the number of subscribers, the average number of likes per post have actually decreased!}
+	
+\section{Conclusions}
 
 \bibliographystyle{plain.bst}
 \bibliography{reference}

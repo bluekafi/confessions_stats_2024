@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: plain.bst.bst
@@ -9,45 +9,48 @@ Warning--to sort, need author or key in wikipedia-gini
 Warning--to sort, need author or key in sheet-calc-gini-coefficient
 Warning--to sort, need author or key in sheet-count-comments
 Warning--to sort, need author or key in sheet-density
-You've used 6 entries,
+Warning--to sort, need author or key in sheet-density-distribution
+Warning--to sort, need author or key in wikipedia-hindex
+Warning--to sort, need author or key in vk-link-old-stats
+You've used 9 entries,
             2118 wiz_defined-function locations,
-            515 strings with 5011 characters,
-and the built_in function-call counts, 974 in all, are:
-= -- 90
-> -- 6
+            524 strings with 5435 characters,
+and the built_in function-call counts, 1451 in all, are:
+= -- 135
+> -- 9
 < -- 0
-+ -- 6
++ -- 9
 - -- 0
-* -- 32
-:= -- 111
-add.period$ -- 12
-call.type$ -- 6
-change.case$ -- 18
+* -- 47
+:= -- 162
+add.period$ -- 18
+call.type$ -- 9
+change.case$ -- 27
 chr.to.int$ -- 0
-cite$ -- 12
-duplicate$ -- 42
-empty$ -- 139
+cite$ -- 18
+duplicate$ -- 63
+empty$ -- 208
 format.name$ -- 0
-if$ -- 241
+if$ -- 361
 int.to.chr$ -- 0
-int.to.str$ -- 6
+int.to.str$ -- 9
 missing$ -- 0
-newline$ -- 27
+newline$ -- 39
 num.names$ -- 0
-pop$ -- 48
+pop$ -- 72
 preamble$ -- 1
-purify$ -- 12
+purify$ -- 18
 quote$ -- 0
-skip$ -- 48
+skip$ -- 72
 stack$ -- 0
-substring$ -- 30
-swap$ -- 6
+substring$ -- 45
+swap$ -- 9
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 24
-warning$ -- 6
+type$ -- 36
+warning$ -- 9
 while$ -- 0
-width$ -- 7
-write$ -- 44
-(There were 6 warnings)
+width$ -- 10
+write$ -- 65
+(There were 9 warnings)

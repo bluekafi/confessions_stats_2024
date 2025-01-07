@@ -5,6 +5,11 @@ scrape.py.
 \newblock
   \url{https://drive.google.com/file/d/1x_XWGbxKHCPxmJo7_cfyQRLmpgFyUDie/view?usp=drive_link}.
 
+\bibitem{sheet-density-distribution}
+Table and graph of density distribution.
+\newblock
+  \url{https://docs.google.com/spreadsheets/d/1m4j6RICIfq6DIdJ1OtQPb95STsEhHjRoEMEKSS9QAVE/edit?gid=1492772175#gid=1492772175}.
+
 \bibitem{sheet-calc-gini-coefficient}
 Table calculation of gini coefficient.
 \newblock
@@ -25,9 +30,18 @@ Table density.
 \newblock
   \url{https://docs.google.com/spreadsheets/d/1m4j6RICIfq6DIdJ1OtQPb95STsEhHjRoEMEKSS9QAVE/edit?gid=585297305#gid=585297305}.
 
+\bibitem{wikipedia-hindex}
+Индекс Хирша -- ru.wikipedia.org.
+\newblock
+  \url{https://ru.wikipedia.org/wiki/%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81_%D0%A5%D0%B8%D1%80%D1%88%D0%B0}.
+
 \bibitem{wikipedia-gini}
 Коэффициент Джини — Википедия --- ru.wikipedia.org.
 \newblock
   \url{https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D1%8D%D1%84%D1%84%D0%B8%D1%86%D0%B8%D0%B5%D0%BD%D1%82_%D0%94%D0%B6%D0%B8%D0%BD%D0%B8}.
+
+\bibitem{vk-link-old-stats}
+Паста-5815.
+\newblock \url{https://vk.com/wall-214737987_30155}.
 
 \end{thebibliography}
