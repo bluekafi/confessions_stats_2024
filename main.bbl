@@ -1,4 +1,13 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{vk-announcement-of-okli}
+Anncouncement of okli.
+\newblock \url{https://vk.com/wall-214737987_64930}.
+
+\bibitem{sheet-main}
+Gogle sheet main.
+\newblock
+  \url{https://docs.google.com/spreadsheets/d/1m4j6RICIfq6DIdJ1OtQPb95STsEhHjRoEMEKSS9QAVE/edit?usp=sharing}.
 
 \bibitem{code-scrape-py}
 scrape.py.
@@ -30,6 +39,11 @@ Table density.
 \newblock
   \url{https://docs.google.com/spreadsheets/d/1m4j6RICIfq6DIdJ1OtQPb95STsEhHjRoEMEKSS9QAVE/edit?gid=585297305#gid=585297305}.
 
+\bibitem{sheet-post-vs-time}
+Table of posts vs time.
+\newblock
+  \url{https://docs.google.com/spreadsheets/d/1m4j6RICIfq6DIdJ1OtQPb95STsEhHjRoEMEKSS9QAVE/edit?gid=46077490#gid=46077490}.
+
 \bibitem{wikipedia-hindex}
 Индекс Хирша -- ru.wikipedia.org.
 \newblock
@@ -39,6 +53,10 @@ Table density.
 Коэффициент Джини — Википедия --- ru.wikipedia.org.
 \newblock
   \url{https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D1%8D%D1%84%D1%84%D0%B8%D1%86%D0%B8%D0%B5%D0%BD%D1%82_%D0%94%D0%B6%D0%B8%D0%BD%D0%B8}.
+
+\bibitem{vk-link-poll-removal-of-okli}
+Паста-13620.
+\newblock \url{https://vk.com/wall-214737987_72834}.
 
 \bibitem{vk-link-old-stats}
 Паста-5815.

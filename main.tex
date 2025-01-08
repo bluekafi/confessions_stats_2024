@@ -44,42 +44,56 @@
 %-----------------------------------------------------------------------
 
 \renewcommand\thesubfigure{\asbuk{subfigure}} %[RUS] for renaming subfigures to russian
-\sisetup{output-decimal-marker = {,}} %[RUS] changes all ordinary decimal separator to rassiky commas
+%\sisetup{output-decimal-marker = {,}} %[RUS] changes all ordinary decimal separator to rassiky commas
 \pagestyle{fancy}
 \graphicspath{{figures/}}
 
 
-\newcommand\titleshort{Most popular commentator}
+\newcommand\titleshort{Report}
 
 \author[1]{Jamclub}
 
 \affil[1]{Физтех-confessions}
 
-\title{Физтех-сonfessions, the most popular commentator of 2024}
+\title{Физтех-сonfessions Report}
 \fancyhead{}
 \fancyhead[L]{Физтех-сonfessions}
 \fancyhead[C]{\titleshort}
 \fancyhead[R]{\the\year}
 
 
-
+\sloppy
 \begin{document}
 
 \maketitle
-\renewcommand{\arraystretch}{1.3}
+\renewcommand{\arraystretch}{1.4}
 
 \begin{abstract}
 	Firstly, this report determines who is the most popular commentator of физтех-confessions, based on the number of likes each comment received.
-	Secondly, compares the influence of the top few commentators with the rest of the community.
+	Secondly, compares the influence of the top few commentators with the rest of the audience.
 	Thirdly, analyzes the number of posts and number of likes over time.
 	If your name appears in this report and you think that you did not consent, then cry about it.
 	\end{abstract}
 
 \tableofcontents
 
-
+\newpage
 \section{Introduction}
-\subsection{motivation}
+\subsection{Definitions}
+	\begin{enumerate}
+		\item \textbf{active period:} when there is an active admin and there are regular posts, in contrast to depressions, when there is no admin, or no active admin.
+		\item \textbf{audience:} the set of authors, writers, readers.
+		\item \textbf{author:} the human who writes the comment.
+		\item \textbf{density:} the number of likes per comment for a author.
+		\item \textbf{hashtag:} a post of физтех-confessions, containing an unique hashtag number.
+		\item \textbf{post:} a post on vk with a unique link, it can contain multiple hashtag-posts if it is a однострочки-post, for example: \#11202, \#11203, \#11204.
+		\item \textbf{raw data:} unprocessed preliminary data.
+		\item \textbf{table:} data which has headings, columns and rows.
+		\item \textbf{writer:} the human who writes the post.
+	\end{enumerate}
+	
+	
+\subsection{Motivation}
 	2024 was a great year! Физтех-confessions was used:
 	\begin{enumerate}
 		\item To confess love and sins
@@ -89,43 +103,75 @@
 		\item To share some brilliant memes.
 	\end{enumerate}
 	
-	Definitons:
-	\begin{enumerate}
-		\item \textbf{Author:} The author of a comment.
-		\item \textbf{Writer:} Writer of a post / pasta.
-	\end{enumerate}
-	
-	The community would be glad to know who is the most popular author, and how the productivity of the writers have evolved over time.
+	The audience would be glad to know who is the most popular author, and how the productivity of the writers has evolved over time.
 
-\section{Collection of Data}
-\subsection{Basic statistics on the source}
-	An amateur code \cite{code-scrape-py} was used to iterate through all posts backwards in time, starting from 11.12.2024 until 5000 posts were successfully read, and the number of likes on each comment and the author of the comment was recorded and put onto our main table. Instead of 2024, 1.5 year worth of data was used, because the физтех-confessions had change of admins and other breaks this year, and more data is always good for statistics. Here are the preliminary statistics:
-
+\subsection{Source}
 	\begin{table}[H]
 		\centering
-		\caption{Basic statistics on number of likes, comments and authors.}
+		\caption{Statistics on the raw data}
 		\label{table:basic-stats-number-likes-comments-author}
-		\begin{tabular}{| p{5cm}  c |}
+		\begin{tabular}{| p{6cm}  c |}
 			\hline
-			Number of posts recorded & 5000 \\
+			Number of posts recorded: & \num{5000} \\
 			\hline
-			Total number of comments & \num{17753} \\
-			Total number of authors & \num{1778} \\
+			Total number of comments: & \num{17753} \\
+			Total number of authors: & \num{1778} \\
 			\hline
-			Average number of comments per author & \num{9.98} \\
+			Average number of comments per author: & \num{9.98} \\
+			\hline
+			Hashtag and date of the oldest post recorded: & \#4903 08.05.2023 \\
+			Hashtag and date of the newest post recorded: & \#13312 11.12.2024 \\
 			\hline
 		\end{tabular}
 	\end{table}
+	
+	An amateur code \cite{code-scrape-py} iterated through 5000 posts (\#4903 -- \#11312), and recorded the following:
+	\begin{enumerate}
+		\item Number of likes on each comment.
+		\item The author of the comment.
+		\item The number of likes on the post.
+	\end{enumerate}
+	
+	The number of hashtags is not equal to the number of posts, $13312 - 4903 + 1 \neq 5000$, because:
+	\begin{enumerate}
+		\item Deleted posts, for example in \{\#2, \#3, \#10\}, actual number of posts = 3, number of hashtags based on the max and min, $10 - 2 + 1 = 9$.
+		\item Однострочки and говнострочки.
+		\item Possibly, a bug in the code which simply fails to read a page.
+		\item Possibly, the code fails to read, because vk forces the code to login to view the page.
+	\end{enumerate}
+	The last two points are noted as possibility because the quantity of Однострочки was not measured, lets assume that an однострочки-post on average has 6 hashtags, and see if the numbers make sense.
+	
+	\begin{table}[H]
+		\centering
+		\caption{Possible proportion of однострочки-posts}
+		\label{table:count-post-one-liners}
+		\begin{tabular}{| c | p{6cm} | c |}
+			\hline
+			1 & Number of posts with single hashtag: & \num{4318} \\
+			\hline
+			2 & Number of однострочки-posts: & \num{682} \\
+			3 & Average number of hashtags in one однострочки-post (assumption): & \num{6} \\
+			\hline
+			4 & Total posts (checking row 1 and 2): & $4318 + 682 = 5000$ \\
+			\hline
+			5 & Total hashtags (from row 1, 2, and 3): & $4318 + 6 * 682 = 8410$ \\
+			6 & Total hashtags (actual, from recorded hashtags): & $13312 - 4903 + 1 = 8410$ \\
+			\hline
+			7 & Percent of однострочки-posts: & $682 / 5000 = \num{13.6}\%$ \\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	Since all numbers in table \ref{table:count-post-one-liners} looks reasonable, we can assume that the possibility something was not read due to the fault of the code is low. The code was last used to make recordings on 11.12.2024, it might not be usable anymore because vk has made drastic changes in the html formatting of their website.
 
+\subsection{Possible errors}
+	The code could not read the less liked comments if the page of the post had a lot of comments. Because such comments are collapsed and the code was not smart enough to click on buttons and expand to read all comments. Since vk tends to hide the less popular comments by default, this created some inflation in the number of likes on comments. Since the sample size is still very large, such errors do not distort the conclusions on who is the best commentator.
+	
+	Vk.api would give correct data but it was not used due to task being too technically difficult in nature when the benefit is only slightly improved accuracy.
+	
+	\textbf{The raw data was not touched in anyway, extreme precaution was taken when it was copied from .txt output files to the google-sheet \cite{sheet-main}. If mistakes in calculations, wrong cell addresses or typos in the formulas are found, they are UNINTENTIONAL.}
 
-\subsection{Sources of errors}
-	The code could not read the less liked comments if the page of the post had a lot of comments. Because such comments are collapsed and the code was not smart enough to click on buttons and expand to read all comments. Since vk tends to hide the less popular comments by default, this created some inflation in the number of likes. Since the sample size is still very large, such errors do not distort the conclusions on who is the best commentator. Vk.api would give correct data but it was not used due to task being too technically difficult in nature when the benefit is only slightly improved accuracy. \textbf{Sincere precautions were made to not corrupt the raw data, or to change the calculations in anyway to prove an agenda. However if any mistake appears, it is unintentional.}
-
-	h-index: the total number  of comments - h, such that the number of likes in each of these comments is greater than or equal to h.
-
-	popularity = normalized\_count\_likes * normalized\_count\_comments * h-index
-
-
+\newpage
 \section{Commentator}
 \subsection{The most Liked commentator (count\_likes)}
 	Definitions:
@@ -145,11 +191,11 @@
 
 	\begin{table}[H]
 		\centering
-		\caption{Likes received and comments written by all, top-10 and top-40 comparison}
+		\caption{Top-10 and top-40 authors' proportion of comments and likes, comparison.}
 		\label{table:basic-stats-number-likes-comments-author}
 		\begin{tabular}{| p{5cm} | c | c | c |} % or ccS
 			\hline
-			 & top-10 & top-40 & all \\
+			 & top-10 (green) & top-40 & all \\
 			\hline
 			count\_likes &
 				\num{15042} \textbf{(\num{19.8}\%)} &
@@ -174,18 +220,18 @@
 		\label{fig-small-author-take-almost-all-likes}
 	\end{figure}
 
-	We can also say that half of the comment activity comes from just 40 authors. Now for simplicity, let us consider only the top-500 authors, and will have a look at the distribution curve on how the likes are distributed amoung these 500 authors. It is reasonable to take the top-500 instead of all \num{1778} because, the 500th author when sorted on count\_likes had only 18 likes in total. We can assume that 501st author and on wards do not have much desire to get likes, therefore it will not be fair to add them to the distribution curve and conclude that the like distribution among the rich and poor is very large. By rich, of course we mean, those who took a large share of the total likes, and by poor who took a small share of the total likes. Also, the top-500 contribute to \num{93}\% of the total likes, so completely removing the others does not leave a big proportion of the data out.
+	We can also say that half of the comment activity comes from just 40 authors. Now for simplicity, let us consider only the top-500 authors, and will have a look at the distribution curve on how the likes are distributed among these 500 authors. It is reasonable to take the top-500 instead of all \num{1778} because, the 500th author when sorted on count\_likes had only 18 likes in total. We can assume that 501st author and onward do not have much desire to get likes, therefore it will not be fair to add them to the distribution curve and conclude that the like distribution among the rich and poor is very large. By rich, of course we mean, those who took a large share of the total likes, and by poor who took a small share of the total likes. Also, the top-500 contribute to \num{93}\% of the total likes, so completely removing the others does not leave a big proportion of the data out.
 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.8\textwidth]{fig-gini-calculation}
-		\caption{Determination of gini-coefficient \cite{wikipedia-gini}}
+		\caption{Determination of gini-coefficient \cite{wikipedia-gini}, from the top-500 activity of top-500 authors \cite{sheet-calc-gini-coefficient}.}
 		\label{fig-gini-calculation}
 	\end{figure}
 
-	We have used 500 authors to form the gini-distribution, so the top 10 are the top \num{2}\% wealthy men and the top 40 are the top \num{8}\% wealthy men in физтех-confessions. We see that their like contribution is \num{26.7}\% and \num{50.1}\% respectively. This is considering the top-500 authors, when we compare this with table \ref{table:basic-stats-number-likes-comments-author}, which includes all the \num{1778} authors, the percent of contribution of likes is not very different \cite{sheet-calc-gini-coefficient}.
+	Here, we can say that, the top-10 are the top \num{2}\% wealthy men and the top 40 are the top \num{8}\% wealthy men in физтех-confessions. Since $10/500 = 2\%$, and $40/500 = 10\%$, and wealth is the total number of likes received for all the comments that was analyzed. We see that the top-2\% and the top-8\% have taken \num{26.7}\% and \num{50.1}\% of the likes respectively.
 
-	We determine our inequality by the gini-coefficient \cite{wikipedia-gini}, which is calculated from figure \ref{fig-gini-calculation}, here the gini coefficient is \num{0.64} which makes it similar to South Africa, which has the highest income inequality in the world. In other words in South Afria, the top \num{2}\% richest men take \num{26.7}\% of the country's annual wealth, and the top \num{8}\% of the the richest men takes \num{50.1}\% of the country's annual wealth, just as it is the case with физтех-confessions, except luckily it is not food, water and iron, but just the amount of adrenaline rush from receiving notifications of a comment being liked. For comparison, we can look at other countries:
+	In figure \ref{fig-gini-calculation}, the gini coefficient is \num{0.64}. Which means our inequality is similar to South Africa. In other words in South Africa, the top-\num{2}\% richest men take \num{26.7}\% of the country's annual wealth, and the top-\num{8}\% of the the richest men takes \num{50.1}\% of the country's annual wealth, except in our case luckily it is not food, water and iron, but just the amount of adrenaline rush from receiving notifications of a comment being liked. For comparison, we can look at other countries:
 	\begin{table}[H]
 		\centering
 		\caption{Gini-coefficients of various countries}
@@ -194,8 +240,8 @@
 			\hline
 			rank & country & gini-coefficient \\
 			\hline
-			1 & Физтех-confessions & \num{0.64} \\
-			2 & South Africa & \num{0.63} \\
+			1 & South Africa & \num{0.65} \\
+			2 & Физтех-confessions & \num{0.64} \\
 			3 & USA & \num{0.39} \\
 			4 & Russia & \num{0.36} \\
 			5 & Sweden & \num{0.29} \\
@@ -204,14 +250,12 @@
 		\end{tabular}
 	\end{table}
 
-	However note that we talk about South Africa based on our curve of физтех-confessions since we have almost the same gini-coefficient, but the exact distribution for the top \num{2}\% and the top \num{8}\% can be slightly different because gini-coefficient is due to the area between the red and the blue curve, this coefficient can be same due to the same area but actual blue curves of confessions and SOuth Africa can be slightly different.
-
 \subsection{The most Depressed commentator (count\_comments)}
 	Definitions:
 	\begin{itemize}
 		\item \textbf{rank: position based on a characteristic for a local table,} while the serial is always the rank when the table was sorted according to count\_likes.
 		\item count\_comments: the total number of comments an author wrote.
-		\item sr-difference = serial - rank, is the difference between the the positions in the table of count\_likes and in this table. We would want to know if we change the measure based on which we sort the table how much does it differ from the table which was sorted based on the number of likes.
+		\item sr-difference = serial - rank, is the difference between the the positions in the table of count\_likes and in this table. We would want to know if we change the measure based on which we sort the table how much do the positions differ from the table which was sorted based on count\_likes.
 	\end{itemize}
 
 	\begin{table}[H]
@@ -221,7 +265,7 @@
 		\includegraphics[width=0.7\textwidth]{table-count-comments-818}
 	\end{table}
 
-	Certainly the most depressed student in физтех writes the most amount of comments. And now by the legendary sr-difference we see that Tigran Galstyan has moved up 14 places as compared to Table \ref{table-count-likes}. Лариса Ретроградная has also moved up a massive amount of 15 places it is because her comments are self contradictory, trolling or just toxic. Ярослав Аммосов has moved up many places it is because his comments are usually emojis or compliments appreciating the post or a comment of another author. Кафи Шаббир has moved down one place which indicates that his ratio of quality over quantity if not neural slightly good for the community. \textbf{Николай Сменилфамилиюнавзрослуюсерьёзную has gone down by 8 places which means his quality over quantity is pretty high}.
+	Certainly the most depressed student in физтех writes the most amount of comments. And now by the legendary sr-difference we see that Tigran Galstyan has moved up 14 places as compared to Table \ref{table-count-likes}. Лариса Ретроградная has also moved up a massive amount of 15 places it is because her comments are self contradictory, trolling or just toxic. Ярослав Аммосов has moved up many places it is because his comments are usually emojis or compliments appreciating the post or a comment of another author. Кафи Шаббир has moved down one place which indicates that his ratio of quality over quantity if not neutral, slightly good for the community. \textbf{Николай Сменилфамилиюнавзрослуюсерьёзную has gone down by 8 places which means his quality over quantity is pretty high}.
 
 	\begin{figure}[H]
 		\centering
@@ -251,14 +295,9 @@
 	In figure \ref{fig-proportion-of-comments-or-posts-by-likes}, we see that only \num{5}\% of the comments have more than \num{20} likes while, \num{28.2}\% of the posts have more than \num{20} likes.
 
 \subsection{The most Sigma commentator (density)}
-	Definitions:
-	\begin{itemize}
-		\item density = count\_likes / count\_comments, is the number of likes per comment written by the author.
-	\end{itemize}
-
 	\begin{table}[H]
 		\centering
-		\caption{Top-40 authors sorted according to density \cite{sheet-density}}
+		\caption{Top-30 authors sorted according to density \cite{sheet-density}}
 		\label{table-density}
 		\includegraphics[width=0.75\textwidth]{table-density}
 	\end{table}
@@ -268,7 +307,7 @@
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\textwidth]{fig-count-likes-comments-author-points}
-		\caption{Number of likes vs comments points for different authors.}
+		\caption{Number of likes vs comments for different authors, as points on a graph.}
 		\label{fig-count-likes-comments-author-points}
 	\end{figure}
 
@@ -283,10 +322,10 @@
 	\end{figure}
 
 	\begin{enumerate}
-		\item \textbf{Famous zone}: authors of this zone are famous.
-		\item \textbf{Sigma zone}: authors of this zone many not be known to all but those who know them respect these authors' comments a lot.
-		\item \textbf{Troll zone}: authors in this zone write a lot of troll comments.
-		\item \textbf{No one cares zone}: not a lot of audience cares or knows about the authors in this zone.
+		\item \textbf{Famous zone}: most of the audience will recognize the name of these authors.
+		\item \textbf{Sigma zone}: not everyone know them, but those who know the author, immensely value what the author writes.
+		\item \textbf{Troll zone}: their troll and toxic comments are often a cancer to the eye.
+		\item \textbf{No one cares zone}: a small number of people know them or care about them.
 	\end{enumerate}
 
 \subsection{The most Based commentator (reverse density)}
@@ -298,7 +337,7 @@
 		\label{table-reverse-density}
 	\end{figure}
 
-	These authors are so \textbf{база} that people are probably afraid to like their comments, their comments are often misunderstood if they carry a deeper meaning. Sometimes some of them are just trolling in massive amounts. Eventough it is the bottom of the list, there are a surprisingly large number of women here and it turns out the women are in green (Евгения Алексеева, Алина Куринная, София Труфанова), which means that the top women do not write so much, but what they write is liked by a disproportionately high number of people. It is probably because the community of физтех-confessions and физтех is mostly male, and seeing female comments below the posts melts a man's heart.
+	These authors are so \textbf{база} that people are probably afraid to like their comments, their comments are often misunderstood, if they carry a deeper meaning. Sometimes some of them are just trolling in massive amounts. There are a surprisingly large number of women in green (Евгения Алексеева, Алина Куринная, София Труфанова), these women have slightly higher densities than the average of the population. It is probably because the community of физтех-confessions and физтех is mostly male, and seeing female comments below the posts melts a man's heart.
 
 	\begin{figure}[H]
 		\centering
@@ -325,36 +364,59 @@
 		\includegraphics[width=0.9\textwidth]{table-hindex}
 	\end{table}
 	
-	The density does not give us a full picture. Maybe an author writes a lot of compliments with decreases his density, or maybe he started out bad but now is doing good. Hence we judge them by the h-index \cite{wikipedia-hindex}.
-
+	The density does not give us a full picture. Maybe an author writes a lot of compliments which decreases his density, or maybe he started out bad but now is doing good. Hence we judge them by the h-index \cite{wikipedia-hindex}.
+	
+	\newpage
+	\vspace*{\fill}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth]{fig-authors-summary-pic}
+		\caption{Top Commentators}
+		\label{fig-authors-summary-pic}
+	\end{figure}
+	\vfill
+	
+\newpage
 \section{Posts}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.6\textwidth]{fig-old-count-post-time}
+		\includegraphics[width=0.8\textwidth]{fig-old-count-post-time}
 		\caption{Statistics of number of posts over time, published in August 2023 in \#5818 \cite{vk-link-old-stats}}
 		\label{fig-old-count-post-time}
 	\end{figure}
-	In figure \ref{fig-old-count-post-time}, for the first time in our life could see that just like there are debt and credit cycles in the economy of a country, there are periods of less productivity by the writers of the posts and admins. Over here we see only one depression, which have indeed correctly defined to be the great depression. However do these patterns of productivity and depressions happen over and over again? To answer this question we need to zoom out further in this graph.
+	In figure \ref{fig-old-count-post-time}, for the first time in our life could see that, just like there are debt and credit cycles in the economy of a country, there are periods of less productivity of the writers and admins. Over here we see only one depression. Was it really the great depression? Did we have such a long depression again? Do these patterns of productivity and depressions happen over and over again? To answer this question we need to zoom out further out of this graph.
 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{fig-post-n-vs-time}
-		\caption{Number of post published over time, and number of posts published per day for various periods of time.}
+		\caption{Number of post published over time, and number of posts published per day for various periods of time \cite{sheet-post-vs-time}. This data was collected separately and the period is longer.}
 		\label{fig-post-n-vs-time}
 	\end{figure}
 	
-	In figure \ref{fig-post-n-vs-time}, we are looking at the whole history of confessions. The 100th post was published on the 1st of September 2022 and the 13600th post on the 3rd of January 2025. Which is 13500 posts published over 856 days, which is \num{15.7} posts per day. The average number of likes per post from June 2023 to December 2024 is \num{22.4}. 
+	In figure \ref{fig-post-n-vs-time}, we are looking at the whole history of confessions. The 100th post was published on 01.09.2022 and the 13600th post on 03.01.2025. That is 13501 posts published over 856 days, or \textbf{\num{15.7} posts per day}. The average number of likes per post from June 2023 to December 2024 is \num{22.4}. The activity starts slowly decreasing during examination sessions and significantly drops during vacations.
 	
-	In the beginning we had the \textbf{trial-period} which perhaps lasted 15th of October 2022, during which confessions was still being popularized and hence we can assume there were not many writers of pastas at that time, but never the less, the number of posts per day is \num{20}, which is strangely even higher than the current average under the reign of \textbf{Окли Сириус}, \num{16} posts per day.
+	\begin{enumerate}
+		\item \textbf{trial-period} (01.09.2022 -- 15.10.2022): confessions was still being popularized. The number of posts per day (\num{20}) is very high compared to the less number of writers, which is strangely even higher than the current average posts per day under the reign of \textbf{Окли Сириус}, \num{16} posts per day.
 	
-	Under the 1st Administration of Kristina (\textbf{kristina-1}), the number of posts per day was so high that no oter periods can come closer to this number. The significance about this period is that, only written text was allowed, polls and pictures were probably approved only on Sunday. This is the period when the writers of pastas dumped a lot of trash and most content was published with little or less filtering.
+		\item \textbf{kristina-1} (15.10.2022 -- 15.01.2023): the highest number of posts per day, slightly lower likes per post. Only written text was allowed, polls and pictures were mostly approved only on Sunday. The writers dumped a lot of trash and most content was published with little or less filtering. Kristina overworked during this period. (In sense of economics, a lot of growth was created by borrowing credits. Now each unit of credit created produces the same unit of debt, which needs to be paid in the future).
 	
-	Obviously Kristina overworked, just us credit based, speculation based economic growth causes the bubble to brust, which is the time when the debts which was used to create credit now need to be payed back. Overworked Kristina is going to be overwhelmed and will need to rest. The rest or depressed, gloomy sadness period was a long 4 months, lasting from the 15th of January 2023 to 15th of April 2023.
+		\item \textbf{The great-depression} (15.01.2023 -- 15.04.2023): overworked Kristina was overwhelmed and needed to rest. This rest (depressed, gloomy sadness) period was a long 3 months. (It was time to pay back the large sum of debt accumulated that had been accumulated, the larger the debt -- the larger the crisis, or if the crisis is big enough can be called a depression).
+		
+		\item \textbf{kristina-2} (15.04.2023 -- 05.06.2023): a short active period, ended with the famous мама-таракан videos.
+		
+		\item \textbf{depression} (05.06.2023 -- 15.09.2023): a long general depression due to summer, a new admin was looked for during this period.
+		
+		\item \textbf{eva-kali} (15.09.2023 -- 15.06.2024): 9 months long, making it the longest period in the history, with a massive average of 19 posts per day. Here we see a sharp local drop during the new year of 2024. Eva kali was probably helped by Kristina. Jamclub was labeled as schizophrenia and much of it was banned. And most of what made through was on Sundays (aka день-говна).
+		
+		\item \textbf{astra-crises} (15.06.2023 -- 15.10.2024): there were enough posts per day to not designate them as depressions, but they were certainly crises. \textbf{2008-financial-crisis} began due to the start of exams in June, and in the middle of the summer eva, returned with a new name \textbf{eva-astra}, but kristina had probably quit by this time, but never the less there is a local peak. The overall activity during this period was much lower than any active periods. It ended with an \textbf{identity-crisis} when eva decided that she would need to prepare for ГОС, no one knew who the next admin would be, the new admin was selected in the public group chat.
+		
+		\item \textbf{okli} (15.10.2024 -- present): on 13.10.2024 around the post of \#12400, it was announced that \textbf{Окли Сириус} would be the new admin \cite{vk-announcement-of-okli}. This period saw a large increase in the number of picture based memes. Jamclub was given a new level of freedom.
+	\end{enumerate}
 	
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{fig-post-n-vs-time-joke}
-		\caption{Marking periods in USA's econimic history on number of posts with respect to time.}
+		\caption{Marking periods in USA's econimic history on figure \ref{fig-post-n-vs-time}. This is the source for naming many of the periods.}
 		\label{fig-post-n-vs-time-joke}
 	\end{figure}
 	
@@ -362,21 +424,157 @@
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{fig-likes-mega-likes-vs-post-n}
-		\caption{}
+		\caption{Likes by categories distiributed over hashtag-numbers of posts.}
 		\label{fig-likes-mega-likes-vs-post-n}
 	\end{figure}
 	
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{fig-likes-vs-post-moving-average}
-		\caption{Likes vs hash-number of post, and the average number of likes of aurrounding 100 posts.}
+		\caption{Likes vs hashtag-number of posts, and (avr\_100) the average number of likes of surrounding 100 posts.}
 		\label{fig-likes-vs-post-moving-average}
 	\end{figure}
 	
-	A sad fact is that, it is clear that the number of posts have slightly decreased, if we compare it with the reign of \textbf{Ева Астра}. The number of subscribers have definitely increased by a large margin. However when we look at the number of likes per post over time, the trendline very slightly slopes downwards. \textbf{Given the same number of posts per day over time, and given steady increase of the number of subscribers, the average number of likes per post have actually decreased!}
+	The average number of likes per post very slightly decreased compared to the average, and significantly decreased compared to the period known as Eva's Miracle, where the number of posts and the likes per post was both high. The number of subscribers have steadily increased by a large margin over the year. However when we look at the trend-line of number of likes per post over time, the trend-line very slightly slopes downwards.
 	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{fig-poll-for-okli-removal}
+		\caption{Poll for removal of \textbf{Окли Сириус}, \#13620 \cite{vk-link-poll-removal-of-okli}.}
+		\label{fig-poll-for-okli-removal}
+	\end{figure}
+	
+	\textbf{Окли Сириус} claims that his method of [данные удалены] censorship is correct and is helping the community, because he sees positive statistics. This is a contradiction to the poll in figure \ref{fig-poll-for-okli-removal} where 65\% voters demand her removal. Many active writers and have stopped writing due to dissatisfaction with \textbf{Окли Сириус}'s policy of censorship.
+		
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{fig-example-of-stats-vk}
+		\caption{Example of community statistics, which most of the time shows positive results when the admins are sure they have not posted much.}
+		\label{fig-example-of-stats-vk}
+	\end{figure}
+	
+	\textbf{Окли Сириус} probably only looks at vk community page activity statistics, for example figure \ref{fig-example-of-stats-vk}. The vk community statics of физтех-confessions most probably shows that the activity is on the rise. 
+	
+	For example, the activity during the last month is higher than during the last 6 months. But this is misleading statistic. The activity during the last month will certainly be higher than during the last 6 months, because during the last 6 months, there were crisis periods, where there was no active admin.
+	
+	We can see in figure \ref{fig-post-n-vs-time} that financial and identity crises happeded (01.07.2024 - 01.10.2024). Also it is possible, vk probably chooses the reference points in such a way, that the initial points are located at the worst periods, thus maximizing the possibility of obtaining positive statistics. Vk does not care about the truth, it just wants to encourage people to use vk more and more. That is one reason why they do not have the dislike button.
+				
+	\textbf{Окли Сириус} and \textbf{Аврора Фантомхайв} claim that the activity under \textbf{Окли Сириус}'s reign has increased, they also claim that they can proof through statistics. \textbf{Мартин Рольгейз}, \textbf{Андрей Щапин} and \textbf{Даниил Городецкий}, have repeatedly requested \textbf{Окли Сириус} and \textbf{Аврора Фантомхайв} for the statistics (04.01.2024 - 06.01.2024), but their requests were ignored. Let us look at the most liked posts for May 2023 -- December 2024:
+	
+	\newpage	
+	\vspace*{\fill}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{fig-top-posts-10}
+		\caption{Most liked post, at number-10}
+		\label{fig-top-posts-10}
+	\end{figure}
+	\vfill
+	
+	\newpage	
+	\vspace*{\fill}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{fig-top-posts-9}
+		\caption{Most liked post, at number-9}
+		\label{fig-top-posts-9}
+	\end{figure}
+	\vfill
+	
+	\newpage	
+	\vspace*{\fill}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{fig-top-posts-8}
+		\caption{Most liked post, at number-8}
+		\label{fig-top-posts-8}
+	\end{figure}	
+	\vfill
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{fig-top-posts-7}
+		\caption{Most liked post, at number-7}
+		\label{fig-top-posts-7}
+	\end{figure}
+	\vfill
+	
+	\newpage	
+	\vspace*{\fill}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{fig-top-posts-6}
+		\caption{Most liked post, at number-6}
+		\label{fig-top-posts-6}
+	\end{figure}
+	\vfill
+	
+	\newpage	
+	\vspace*{\fill}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{fig-top-posts-5}
+		\caption{Most liked post, at number-5}
+		\label{fig-top-posts-5}
+	\end{figure}
+	\vfill
+	
+	\newpage	
+	\vspace*{\fill}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{fig-top-posts-4}
+		\caption{Most liked post, at number-4}
+		\label{fig-top-posts-4}
+	\end{figure}
+	\vfill
+	
+	\newpage	
+	\vspace*{\fill}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{fig-top-posts-3}
+		\caption{Most liked post, at number-3}
+		\label{fig-top-posts-3}
+	\end{figure}
+	\vfill
+	
+	\newpage		
+	\vspace*{\fill}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{fig-top-posts-2}
+		\caption{Most liked post, at number-2}
+		\label{fig-top-posts-2}
+	\end{figure}
+	\vfill
+	
+	\newpage	
+	\vspace*{\fill}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{fig-top-posts-1}
+		\caption{Most liked posts at number-1}
+		\label{fig-top-posts-1}
+	\end{figure}
+	\vfill
+\newpage
 \section{Conclusions}
-
+	\begin{enumerate}
+		\item There are a huge number of authors who have commented less than 20 times in their life, since \num{500} out of \num{1778} authors account for \num{93}\% of all likes on comments.
+		
+		\item The top 40 authors account for half the comment activity.
+		
+		\item The average number of posts per day under the reign of \textbf{Окли Сириус} is \num{16}, which is the lowest compared to \textbf{kristina-1}, \textbf{kristina-2}, and \textbf{eva-kali}, which had average post per day of: 32, 22, and 19 respectively. Even tough the number of subscribers increased, the number of writers decreased due illogical censorships of [данные удалены].
+		
+		\item Even tough the number of memes increased under \textbf{Окли Сириус}, and memes get significantly higher number of likes, the average likes per post did not change from the average. And is significantly lower than the Eva's Miracle period in figure \ref{fig-likes-vs-post-moving-average}.
+		
+		\item Vk-statistics can be misleading in the case of физтех-confessions, as we do not have continuous posts over the year and there are significant periods of depressions. Therefore any active period will look better than the average. So for correct conclusions, data such as posts and likes over time needs to be manually obtained and analyzed period by period. And only active periods needs to be compared with one another.
+		
+		\item The activity starts slowly decreasing during examination sessions and significantly drops during vacations.
+		
+	\end{enumerate}
+	
+\newpage
 \bibliographystyle{plain.bst}
 \bibliography{reference}
 \end{document}
